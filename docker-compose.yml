@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+    app:
+        build: .
+        container_name: apits
+        volumes:
+          - ./:/usr/share/nginx/html
+        ports:
+          - 80:80
