@@ -5,5 +5,9 @@ services:
         container_name: apits
         volumes:
           - ./:/usr/share/nginx/html
+        expose:
+          - 80
+          - 3000
         ports:
           - 80:80
+          - 3000:3000
