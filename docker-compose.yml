@@ -6,8 +6,8 @@ services:
         volumes:
           - ./:/usr/share/nginx/html
         expose:
-          - 80
-          - 3000
+          - ${PORT_HTML}
+          - ${PORT}
         ports:
-          - 80:80
-          - 3000:3000
+          - ${PORT_HTML}:80
+          - ${PORT}:3000
