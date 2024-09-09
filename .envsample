@@ -1,8 +1,4 @@
 # .env, don't commit to repo
 PORT=3000
 PORT_HTML=80
-PG_HOST=aws-0-us-east-1.pooler.supabase.com
-PG_PORT=5432
-PG_USER=postgres.sefxhyaqoodrxwonkgdp
-# PG_PASSWORD=*****
-PG_DATABASE=postgres
+
