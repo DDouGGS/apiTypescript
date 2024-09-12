@@ -1,8 +1,9 @@
 import 'express-async-errors';
-import express, { Request, Response, NextFunction } from 'express';
+import express, {Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import indexRoutes from './routes/index';
 
 const app = express();
 
@@ -14,9 +15,7 @@ app.use(helmet());
 
 app.use(express.json());
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-   res.send("Hello World");
-})
+app.use(indexRoutes);
 
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
    res.status(500).send(error.message);
