@@ -3,29 +3,25 @@ const { Client } = pg
 
 export class postgres
 {
-  private static _conn: Client;
+  private static _conn: Client
 
-  private constructor(){}
+  private constructor(propertys){}
 
-  public static async function conn(propertys)
+  async conn()
   {
     if(!this._conn){
       this._conn = new Client({
-        user: propertys.username,
-        password: propertys.password,
-        host: propertys.hostname,
-        port: propertys.port,
-        database: propertys.database,
+        user: 'postgres.sefxhyaqoodrxwonkgdp',
+        password: 'DDouGG@468677',
+        host: 'aws-0-us-east-1.pooler.supabase.com',
+        port: 5432,
+        database: 'postgres',
       });
     }
-    await this._conn.connect();
+
     // connection
-    this._conn.then(() => {
-  		console.log('Connected to PostgreSQL database');
-  	});
-  	this._conn.catch((err) => {
-  		console.error('Error connecting to PostgreSQL database', err);
-  	});
-    return $this._conn;
-    }
+    await this._conn.connect()
+
+    return this._conn
+  }
 }

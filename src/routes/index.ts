@@ -1,9 +1,29 @@
-import {Router,Request,Response} from 'express';
+import {Router,Request,Response} from 'express'
+import {User} from '../models/user'
+import { userController } from '../controllers/userController'
 
-const router = Router();
+const user : User[] = []
+const router = Router()
 
-router.get('/', (req: Request, res: Response) => {
-    res.json({success: true});
-})
+router.get(
+  '/',
+  (req: Request, res: Response) => {
+    res.json({success: true})
+  }
+)
+router.get(
+  '/user',
+  (req: Request, res: Response) => {
+    res.json(user)
+  }
+)
+router.post(
+  '/user',
+  (req: Request, res: Response) => {
+    const newUser : userController = new userController();
 
-export default router;
+    res.status(201).json(newUser.add(req, res))
+  }
+)
+
+export default router
