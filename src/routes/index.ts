@@ -20,9 +20,8 @@ router.get(
 router.post(
   '/user',
   (req: Request, res: Response) => {
-    const newUser : userController = new userController();
-
-    res.status(201).json(newUser.add(req, res))
+    const userCtrl : userController = new userController();
+    res.status(201).json(userCtrl.add(req, res))
   }
 )
 

@@ -5,7 +5,7 @@ export class postgres
 {
   private static _conn: Client
 
-  private constructor(propertys){}
+  private constructor(){}
 
   async conn()
   {
@@ -16,12 +16,11 @@ export class postgres
         host: 'aws-0-us-east-1.pooler.supabase.com',
         port: 5432,
         database: 'postgres',
-      });
+      })
     }
 
     // connection
-    await this._conn.connect()
-
+    let ctrl = await this._conn.connect()
     return this._conn
   }
 }

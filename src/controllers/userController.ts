@@ -6,27 +6,33 @@ import propertysPostgres from '../dbs/propertysPostgres'
 
 export class userController
 {
-  add(req: Request, res: Response): string
+  async add(req: Request, res: Response)
   {
     // new model
     const newUser : User = {
+      id:       !req.body.id? 'gen_random_uuid()': req.body.id,
       username: req.body.username,
-      typedoc:  !req.body.typedoc? null: req.body.typedoc,
+      typedoc:  !req.body.typedoc? 'cpf': req.body.typedoc,
       document: req.body.document,
       password: createHash('md5').update(req.body.password).digest('hex'),
       access:   req.body.access
     }
 
-    let insert = "INSERT INTO users (username, typedoc, document, password, access) VALUES ('" + newUser.username + "', '" + newUser.typedoc + "', '" + newUser.document + "', '" + newUser.password + "', '" + newUser.access + "');"
-    // connection
-    const pg   = new postgres()
-    const conn = pg.conn()
-    const ctrl = conn.query( insert )
-    conn.end()
+    let insert = "INSERT INTO users(id, username, typedoc, document, password, access) VALUES (" + newUser.id + ", '" + newUser.username + "', '" + newUser.typedoc + "', '" + newUser.document + "', '" + newUser.password + "', '" + newUser.access + "');"
+    console.log(insert)
 
-    if(!crtl){
-      return {success: false}
+    // connection
+    const pg = new postgres()
+    const conn = await pg.conn()
+    let ctrl = await conn.query( insert )
+    console.log(ctrl)
+    await conn.end()
+
+    let rtn = { 'success': true, 'msg': null }
+    if(!ctrl.rowCount){
+      rtn = { 'success': false, 'msg': 'Erro na inclusão.' }
     }
-    return {success: true}
+    console.log(rtn)
+    return rtn
   }
 }

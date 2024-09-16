@@ -1,4 +1,5 @@
 export interface User{
+    id?: string,
     username: string,
     typedoc?: string,
     document: string,
