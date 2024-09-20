@@ -5,3 +5,5 @@ Dockerfile
 LICENSE
 /docker
 /.metadata/
+/apiti/
+/docs/
